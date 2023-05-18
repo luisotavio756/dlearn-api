@@ -12,6 +12,8 @@
     "@types/node": "^20.2.0",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
+    "@types/bcrypt": "^5.0.0",
+    "bcrypt": "^5.1.0",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.5.0",
     "mongoose": "^7.1.1",

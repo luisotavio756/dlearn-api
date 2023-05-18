@@ -71,7 +71,7 @@ apiRoute
       imgUrl: fileName,
     };
 
-    await Card.updateOne(findCard, { $set: updatedCard });
+    await Card.updateOne({ _id: findCard.id }, { $set: updatedCard });
 
     return res.json(Object.assign(findCard, updatedCard));
   });
@@ -95,7 +95,7 @@ apiRoute.delete(async (req, res) => {
   if (!findCard)
     return res.status(404).json({ message: 'Carta não encontrada' });
 
-  await Card.deleteOne(findCard);
+  await Card.deleteOne({ _id: findCard.id });
   await storageProvider.deleteFile(findCard.imgUrl);
 
   return res.send(204);
