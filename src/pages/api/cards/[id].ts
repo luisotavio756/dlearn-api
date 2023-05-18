@@ -4,7 +4,7 @@ import nextConnect from 'next-connect';
 import upload from '@/config/upload';
 import DiskStorageProvider from '@/providers/DiskStorageProvider';
 
-// import authSession from '@/middlewares/authSession';
+import authSession from '@/middlewares/authSession';
 
 import '@/config/database';
 import Card from '@/models/Card';
@@ -45,7 +45,18 @@ const apiRoute = nextConnect<NextApiRequest, NextApiResponse>({
 
 const storageProvider = new DiskStorageProvider();
 
-// apiRoute.use(authSession);
+apiRoute.get(async (req, res) => {
+  const { id } = req.query;
+
+  const findCard = await Card.findById(id);
+
+  if (!findCard)
+    return res.status(404).json({ message: 'Carta não encontrada' });
+
+  return res.json(findCard);
+});
+
+apiRoute.use(authSession);
 
 apiRoute
   .use(upload.multer.single('img'))
@@ -76,17 +87,6 @@ apiRoute
     return res.json(Object.assign(findCard, updatedCard));
   });
 
-apiRoute.get(async (req, res) => {
-  const { id } = req.query;
-
-  const findCard = await Card.findById(id);
-
-  if (!findCard)
-    return res.status(404).json({ message: 'Carta não encontrada' });
-
-  return res.json(findCard);
-});
-
 apiRoute.delete(async (req, res) => {
   const { id } = req.query;
 
@@ -98,7 +98,7 @@ apiRoute.delete(async (req, res) => {
   await Card.deleteOne({ _id: findCard.id });
   await storageProvider.deleteFile(findCard.imgUrl);
 
-  return res.send(204);
+  return res.status(204);
 });
 
 export default apiRoute;

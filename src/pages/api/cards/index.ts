@@ -3,11 +3,9 @@ import nextConnect from 'next-connect';
 
 import upload from '@/config/upload';
 import DiskStorageProvider from '@/providers/DiskStorageProvider';
-
-// import authSession from '@/middlewares/authSession';
-
-import '@/config/database';
+import authSession from '@/middlewares/authSession';
 import Card from '@/models/Card';
+import '@/config/database';
 
 interface File {
   filename: string;
@@ -43,7 +41,13 @@ const apiRoute = nextConnect<NextApiRequest, NextApiResponse>({
   },
 });
 
-// apiRoute.use(authSession);
+apiRoute.get(async (_, res) => {
+  const cards = await Card.find();
+
+  return res.json(cards);
+});
+
+apiRoute.use(authSession);
 
 apiRoute
   .use(upload.multer.single('img'))
@@ -60,11 +64,5 @@ apiRoute
 
     return res.json(card);
   });
-
-apiRoute.get(async (_, res) => {
-  const cards = await Card.find();
-
-  return res.json(cards);
-});
 
 export default apiRoute;

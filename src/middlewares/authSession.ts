@@ -9,11 +9,13 @@ export default function authSession(
 ): unknown {
   const authHeader = request.headers.authorization;
 
-  if (!authHeader) return response.status(401).json({ message: 'No token provided !' });
+  if (!authHeader)
+    return response.status(401).json({ message: 'No token provided !' });
 
   const parts = authHeader.split(' ');
 
-  if (parts.length !== 2) return response.status(401).json({ message: 'Invalid token !' });
+  if (parts.length !== 2)
+    return response.status(401).json({ message: 'Invalid token !' });
 
   const [scheme, token] = parts;
 
@@ -26,7 +28,6 @@ export default function authSession(
 
     return next();
   } catch (error) {
-
     return response.status(401).json({ message: 'Invalid token !' });
   }
 }
