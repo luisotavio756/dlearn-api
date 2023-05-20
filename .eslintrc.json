@@ -48,7 +48,8 @@
           ["@/middlewares", "./src/middlewares"],
           ["@/models", "./src/models"],
           ["@/pages", "./src/pages"],
-          ["@/providers", "./src/providers"]
+          ["@/providers", "./src/providers"],
+          ["@/utils", "./src/utils"]
         ]
       }
     }
