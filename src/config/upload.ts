@@ -1,4 +1,4 @@
-import multer, { diskStorage,Multer } from 'multer';
+import multer, { diskStorage, Multer } from 'multer';
 import path from 'path';
 import crypto from 'crypto';
 
@@ -24,6 +24,6 @@ export default {
 
         return callback(null, fileName);
       },
-    })
+    }),
   }),
 } as IUploadConfig;

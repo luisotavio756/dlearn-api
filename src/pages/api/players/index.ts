@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { NextApiResponse, NextApiRequest } from 'next';
 import nextConnect from 'next-connect';
 
