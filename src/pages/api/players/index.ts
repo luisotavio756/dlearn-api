@@ -3,6 +3,7 @@ import nextConnect from 'next-connect';
 
 import '@/config/database';
 import Player from '@/models/Player';
+import { isValid } from '@/utils/passwordUtils';
 
 const apiRoute = nextConnect<NextApiRequest, NextApiResponse>({
   // Handle any other HTTP method
@@ -20,6 +21,16 @@ const apiRoute = nextConnect<NextApiRequest, NextApiResponse>({
 
 apiRoute.post(async (req, res) => {
   const { nickname, password } = req.body;
+
+  if (!nickname || !password) {
+    return res.status(400).json({ message: 'Dados incompletos!' });
+  }
+
+  if (!isValid(password)) {
+    return res
+      .status(400)
+      .json({ message: 'A senha deve conter no mínimo 6 caracteres' });
+  }
 
   const findPlayer = await Player.findOne({ nickname });
 
