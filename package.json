@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
-    "build": "rm -rf dist && tsc"
+    "build": "rm -rf dist && tsc",
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.0",
