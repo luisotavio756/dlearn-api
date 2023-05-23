@@ -1,11 +1,10 @@
 import { verify } from 'jsonwebtoken';
-import { NextApiRequest, NextApiResponse } from 'next';
-import { NextHandler } from 'next-connect';
+import { Request, Response, NextFunction } from 'express';
 
 export default function authSession(
-  request: NextApiRequest,
-  response: NextApiResponse,
-  next: NextHandler,
+  request: Request,
+  response: Response,
+  next: NextFunction,
 ): unknown {
   const authHeader = request.headers.authorization;
 

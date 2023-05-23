@@ -2,7 +2,7 @@ import multer, { diskStorage, Multer } from 'multer';
 import path from 'path';
 import crypto from 'crypto';
 
-const tmpFolder = path.resolve(__dirname, '..', '..', '..', '..', 'tmp');
+const tmpFolder = path.resolve(__dirname, '..', '..', '..', 'tmp');
 
 interface IUploadConfig {
   tmpFolder: string;
@@ -12,7 +12,7 @@ interface IUploadConfig {
 
 export default {
   tmpFolder,
-  uploadsFolder: path.resolve('./public', 'cards-images'),
+  uploadsFolder: path.resolve(tmpFolder, 'uploads'),
 
   multer: multer({
     storage: diskStorage({
