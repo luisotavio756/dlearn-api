@@ -2,7 +2,7 @@ import multer, { diskStorage, Multer } from 'multer';
 import path from 'path';
 import crypto from 'crypto';
 
-const tmpFolder = path.resolve(__dirname, '..', '..', '..', 'public');
+const tmpFolder = path.resolve(__dirname, '..', '..', '..', 'tmp');
 
 interface IUploadConfig {
   tmpFolder: string;
