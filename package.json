@@ -7,6 +7,9 @@
     "build": "rm -rf dist && tsc",
     "start": "node dist/server.js"
   },
+  "engines": {
+    "node": "18"
+  },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.338.0",
     "@types/bcrypt": "^5.0.0",
