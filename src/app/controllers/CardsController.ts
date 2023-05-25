@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 
-import DiskStorageProvider from '../providers/DiskStorageProvider';
+import S3StorageProvider from '../providers/S3StorageProvider';
 import Card from '../models/Card';
 
-const storageProvider = new DiskStorageProvider();
+const storageProvider = new S3StorageProvider();
 
 export default {
   async store(req: Request, res: Response): Promise<Response> {

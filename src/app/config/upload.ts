@@ -8,6 +8,9 @@ interface IUploadConfig {
   tmpFolder: string;
   uploadsFolder: string;
   multer: Multer;
+  aws: {
+    bucket: string;
+  };
 }
 
 export default {
@@ -26,4 +29,8 @@ export default {
       },
     }),
   }),
+
+  aws: {
+    bucket: process.env.AWS_BUCKET,
+  },
 } as IUploadConfig;
