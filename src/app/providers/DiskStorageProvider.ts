@@ -4,9 +4,9 @@ import uploadConfig from '../config/upload';
 
 class DiskStorageProvider {
   public async saveFile(file: string): Promise<string> {
-    if (!fs.existsSync(path.resolve(uploadConfig.uploadsFolder))) {
-      await fs.promises.mkdir(path.resolve(uploadConfig.uploadsFolder));
-    }
+    // if (!fs.existsSync(path.resolve(uploadConfig.uploadsFolder))) {
+    //   await fs.promises.mkdir(path.resolve(uploadConfig.uploadsFolder));
+    // }
 
     await fs.promises.rename(
       path.resolve(uploadConfig.tmpFolder, file),
