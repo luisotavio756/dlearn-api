@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 import S3StorageProvider from '../providers/S3StorageProvider';
 import Card from '../models/Card';
+import { getFinalUrl } from '../utils/cardUtils';
 
 const storageProvider = new S3StorageProvider();
 
@@ -13,7 +14,7 @@ export default {
 
     const card = await Card.create({
       ...req.body,
-      imgUrl: fileName,
+      imgUrl: getFinalUrl(fileName),
     });
 
     return res.json(card);
@@ -55,7 +56,7 @@ export default {
 
     const updatedCard = {
       ...req.body,
-      imgUrl: fileName,
+      imgUrl: getFinalUrl(fileName),
     };
 
     await Card.updateOne({ _id: findCard.id }, { $set: updatedCard });
