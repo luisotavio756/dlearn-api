@@ -12,4 +12,8 @@ routes.use('/cards', cardsRoutes);
 routes.use('/history', historyRoutes);
 routes.use('/players', playersRoutes);
 
+routes.get('/health', (req, res) => {
+  return res.send();
+});
+
 export default routes;
