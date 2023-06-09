@@ -48,16 +48,17 @@ export default {
 
     let fileName = findCard.imgUrl;
 
+    const updatedCard = req.body;
+
     if (img) {
       await storageProvider.deleteFile(fileName);
 
       fileName = await storageProvider.saveFile(img.filename);
-    }
 
-    const updatedCard = {
-      ...req.body,
-      imgUrl: getFinalUrl(fileName),
-    };
+      Object.assign(updatedCard, {
+        imgUrl: getFinalUrl(fileName),
+      });
+    }
 
     await Card.updateOne({ _id: findCard.id }, { $set: updatedCard });
 
