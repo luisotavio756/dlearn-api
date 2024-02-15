@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import S3StorageProvider from '../providers/S3StorageProvider';
 import Card from '../models/Card';
 import { getFinalUrl } from '../utils/cardUtils';
+import translator from '../utils/translator';
 
 const storageProvider = new S3StorageProvider();
 
@@ -21,18 +22,26 @@ export default {
   },
 
   async index(req: Request, res: Response): Promise<Response> {
+    const { language } = req.params;
+
     const cards = await Card.find();
+
+    await Promise.all(cards.map(async (card) => {
+      await translator.translateCard(card, language);
+    }));
 
     return res.json(cards);
   },
 
   async show(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
+    const { id, language } = req.params;
 
     const findCard = await Card.findById(id);
 
     if (!findCard)
       return res.status(404).json({ message: 'Carta não encontrada' });
+
+    await translator.translateCard(findCard, language);
 
     return res.json(findCard);
   },
