@@ -26,9 +26,11 @@ export default {
 
     const cards = await Card.find();
 
-    await Promise.all(cards.map(async (card) => {
-      await translator.translateCard(card, language);
-    }));
+    await Promise.all(
+      cards.map(async card => {
+        await translator.translateCard(card, language);
+      }),
+    );
 
     return res.json(cards);
   },
