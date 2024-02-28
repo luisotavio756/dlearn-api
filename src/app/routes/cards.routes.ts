@@ -6,8 +6,8 @@ import upload from '../config/upload';
 
 const cardsRoutes = Router();
 
-cardsRoutes.get('/', CardsController.index);
-cardsRoutes.get('/:id', CardsController.show);
+cardsRoutes.get('/:language', CardsController.index);
+cardsRoutes.get('/:language/:id', CardsController.show);
 
 cardsRoutes.use(authSession);
 
