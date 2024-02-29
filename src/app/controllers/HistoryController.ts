@@ -27,12 +27,4 @@ export default {
 
     return res.json(gameLog);
   },
-
-  async getHistoryByUserId(req: Request, res: Response): Promise<Response> {
-    const { userId } = req.params;
-
-    const logs = await GameLog.find({ ownerId: userId }).sort({ endAt: -1 }).limit(10);;
-
-    return res.json(logs);
-  },
 };
