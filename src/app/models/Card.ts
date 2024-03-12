@@ -9,6 +9,7 @@ interface ICard {
   solution: string;
   solutionText: string;
   luckType: string;
+  isSuggestion: boolean;
   imgUrl: string;
   starsCalcType: number;
   authorId: Types.ObjectId;
@@ -24,6 +25,7 @@ const CardSchema = new Schema<ICard>(
     solution: String,
     solutionText: String,
     luckType: String,
+    isSuggestion: Boolean,
     imgUrl: String,
     starsCalcType: Number,
     authorId: { type: Schema.Types.ObjectId, ref: 'User' },
