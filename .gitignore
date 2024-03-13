@@ -41,3 +41,5 @@ tmp/*
 !tmp/.gitkeep
 !tmp/uploads
 tmp/uploads/*
+
+package-lock.json
