@@ -11,7 +11,7 @@ export default {
   },
 
   async store(req: Request, res: Response): Promise<Response> {
-    const { winnerName, winnerScore, startedAt, endAt, ownerName, ownerId } =
+    const { winnerName, winnerScore, startedAt, endAt, ownerName, ownerId, ownerScore, ownerPlacing } =
       req.body;
 
     const gameLog = await GameLog.create({
@@ -21,6 +21,8 @@ export default {
       endAt,
       ownerName,
       ownerId,
+      ownerScore,
+      ownerPlacing
     });
 
     return res.json(gameLog);

@@ -7,6 +7,8 @@ interface IGameLog {
   endAt: Date;
   ownerName: string;
   ownerId: Types.ObjectId;
+  ownerScore: Number;
+  ownerPlacing: Number;
 }
 
 const GameLogSchema = new Schema<IGameLog>(
@@ -17,6 +19,8 @@ const GameLogSchema = new Schema<IGameLog>(
     endAt: Date,
     ownerName: String,
     ownerId: { type: Schema.Types.ObjectId, ref: 'Player' },
+    ownerScore: Number,
+    ownerPlacing: Number,
   },
   { timestamps: false },
 );
